@@ -9,6 +9,7 @@ import com.googlecode.lanterna.terminal.Terminal;
 import java.io.IOException;
 
 public class Game {
+
     private final TerminalScreen screen;
     private final Hero hero;
     public Game(int  width, int height) throws IOException, IOException {
@@ -41,17 +42,20 @@ public class Game {
         String keyT = key.getKeyType().toString();
         switch (keyT) {
             case "ArrowUp":
-                hero.moveup();
+                moveHero(hero.moveup());
                 break;
             case "ArrowDown":
-                hero.movedown();
+                moveHero(hero.movedown());
                 break;
             case "ArrowLeft":
-                hero.moveleft();
+                moveHero(hero.moveleft());
                 break;
             case "ArrowRight":
-                hero.moveright();
+                moveHero(hero.moveright());
                 break;
         }
+    }
+    private void moveHero(Position position) {
+        hero.setPosition(position);
     }
 }
