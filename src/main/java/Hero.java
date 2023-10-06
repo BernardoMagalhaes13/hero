@@ -4,16 +4,15 @@ import com.googlecode.lanterna.screen.Screen;
 public class Hero {
     private Position position;
 
+    public Hero(int i, int i1) {
+        this.position = new Position(i, i1);
+    }
     public Position getPosition() {
         return position;
     }
 
     public void setPosition(Position position) {
         this.position = position;
-    }
-
-    public Hero(int i, int i1) {
-        this.position = new Position(i, i1);
     }
 
     public void draw(Screen screen) {

@@ -11,19 +11,19 @@ import java.io.IOException;
 public class Game {
 
     private final TerminalScreen screen;
-    private final Hero hero;
+    private final Arena arena;
     public Game(int  width, int height) throws IOException, IOException {
         Terminal terminal = new DefaultTerminalFactory().setInitialTerminalSize(new TerminalSize(width, height)).createTerminal();
         screen = new TerminalScreen(terminal);
         screen.setCursorPosition(null);   // we don’t need a cursor
         screen.startScreen();             // screens must be started
         screen.doResizeIfNecessary();     // resize screen if necessary
-        hero = new Hero(10, 10);
+        arena = new Arena(width, height);
 
     }
     private void draw() throws IOException {
         screen.clear();
-        hero.draw(screen);
+        arena.draw(screen);
         screen.refresh();
     }
     public void run() throws IOException {
@@ -38,24 +38,6 @@ public class Game {
         }
     }
     private void processKey(KeyStroke key) {
-        System.out.println(key);
-        String keyT = key.getKeyType().toString();
-        switch (keyT) {
-            case "ArrowUp":
-                moveHero(hero.moveup());
-                break;
-            case "ArrowDown":
-                moveHero(hero.movedown());
-                break;
-            case "ArrowLeft":
-                moveHero(hero.moveleft());
-                break;
-            case "ArrowRight":
-                moveHero(hero.moveright());
-                break;
-        }
-    }
-    private void moveHero(Position position) {
-        hero.setPosition(position);
+        arena.processKey(key);
     }
 }
